@@ -1,0 +1,17 @@
+.search {
+  position: relative;
+}
+
+.search__input {
+  min-width: 300px;
+  padding: 16px;
+  border-radius: 32px;
+  border-color: grey;
+}
+
+.search__icon {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

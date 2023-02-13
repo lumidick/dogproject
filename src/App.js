@@ -1,24 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState, useEffect } from 'react';
+import cardsFromBack from './data.json';
+import Header from './components/Header/Header';
+import Logo from './components/Logo/Logo';
+import Search from './components/Search/Search';
+import CardList from './components/CardList/CardList';
 
 function App() {
+  const [cards, setCards] = useState(cardsFromBack);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const onChange = (text) => setSearchQuery(text);
+  const handleRequest = () => {
+    setCards((cards) => cardsFromBack.filter((card) => card.name.toLowerCase().startsWith(searchQuery)));
+  };
+
+  useEffect(() => {
+    handleRequest();
+  }, [searchQuery]);
+
+  const style = { backgroundColor: 'red', height: '150px', width: '150px' };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header>
+        <>
+          <Logo />
+          <Search onChange={onChange} onButtonSearchClick={handleRequest} />
+        </>
+      </Header>
+      <button style={style}></button>
+      <CardList cards={cards}></CardList>
+    </>
   );
 }
 

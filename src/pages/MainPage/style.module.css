@@ -1,0 +1,6 @@
+.info {
+  width: 100%;
+  background-color: #ffe44d;
+  display: flex;
+  flex-direction: column;
+}
